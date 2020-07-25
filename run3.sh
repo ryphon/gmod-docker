@@ -1,1 +1,0 @@
-docker run -it -e "GLST=04285C34D64799830F63FC216DAF94B4" -e "WORKSHOPCOLLECTIONID=2091506439" -e "GAMEMODE=thehidden" -e "MAP=hdn_executive" -p 27017:27015/tcp -p 27017:27015/udp -v hdn:/opt/steam hackebein/garrysmod

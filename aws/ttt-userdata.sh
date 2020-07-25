@@ -1,0 +1,27 @@
+#!/bin/bash
+sudo yum update -y
+sudo yum install docker -y
+sudo systemctl start docker
+mkdir /home/ec2-user/ttt
+aws s3 sync s3://gmod-ttt /home/ec2-user/ttt
+
+IPV4=$(curl 169.254.169.254/latest/meta-data/public-ipv4)
+aws route53 change-resource-record-sets --hosted-zone-id Z3OPAVCB13L0BG --change-batch "{
+   \"Changes\":[
+      {
+         \"Action\":\"UPSERT\",
+         \"ResourceRecordSet\":{
+            \"Name\":\"ttt.itisamystery.com\",
+            \"ResourceRecords\":[
+               {
+                  \"Value\":\"$IPV4\"
+               }
+            ],
+            \"Type\":\"A\",
+            \"TTL\":300
+         }
+      }
+   ]
+}"
+
+docker run -idt -e "GLST=B0213DEEB0360540FFFDCD577A73C363" -e "WORKSHOPCOLLECTIONID=2091507172" -e "WORKSHOPDL=2091507172" -e "WORKSHOP=2091507172" -e "GAMEMODE=terrortown" -e "MAP=ttt_dolls" -p 27015:27015/tcp -p 27015:27015/udp -v /home/ec2-user/ttt:/opt/steam hackebein/garrysmod

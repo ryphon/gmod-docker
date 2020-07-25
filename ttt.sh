@@ -1,0 +1,1 @@
+docker run -it -e "GLST=B0213DEEB0360540FFFDCD577A73C363" -e "WORKSHOPCOLLECTIONID=2091507172" -e "GAMEMODE=terrortown" -e "MAP=ttt_dolls" -p 27015:27015/tcp -p 27015:27015/udp -v $(pwd)/ttt:/opt/steam hackebein/garrysmod
