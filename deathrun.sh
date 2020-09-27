@@ -1,0 +1,1 @@
+docker run -it -e "GLST=8FC53DE1A2A7E665FABF7197AEBA09DF" -e "WORKSHOPCOLLECTIONID=2227527602" -e "GAMEMODE=deathrun" -e "MAP=dr_helix" -p 27015:27015/tcp -p 27015:27015/udp -v $(pwd)/deathrun:/opt/steam hackebein/garrysmod
